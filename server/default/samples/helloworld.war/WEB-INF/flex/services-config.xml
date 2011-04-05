@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services-config>
+
+    <services>
+        <service id="granite-service"
+            class="flex.messaging.services.RemotingService"
+            messageTypes="flex.messaging.messages.RemotingMessage">
+            <destination id="helloWorldService">
+                <channels>
+                    <channel ref="graniteamf"/>
+                </channels>
+                <properties>
+                    <scope>application</scope>
+                    <source>org.test.HelloWorldService</source>
+                </properties>
+            </destination>
+        </service>
+    </services>
+
+    <channels>
+        <channel-definition id="graniteamf" class="mx.messaging.channels.AMFChannel">
+            <endpoint
+                uri="http://{server.name}:{server.port}/{context.root}/graniteamf/amf"
+                class="flex.messaging.endpoints.AMFEndpoint"/>
+        </channel-definition>
+    	<!--
+    	Alternate configuration for HTTPS (requires an APR+SSL setup).
+        <channel-definition id="graniteamf" class="mx.messaging.channels.SecureAMFChannel">
+            <endpoint
+                uri="https://{server.name}:{server.port}/{context.root}/graniteamf/amf"
+                class="flex.messaging.endpoints.SecureAMFEndpoint"/>
+        </channel-definition>
+         -->
+    </channels>
+
+</services-config>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>GraniteDS Community Platform - Configure SSL</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="StyleSheet" href="css/graniteds.css" type="text/css"/>
+	<script type="text/javascript" src="scripts/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushXml.js"></script>
+	<link type="text/css" rel="stylesheet" href="css/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body>
+	<div id="banner">
+		<a href="http://www.graniteds.org/">
+			<img src="images/graniteds.png" alt="GraniteDS" id="logo" width="46" height="46" />
+		</a>
+		<div id="bannerTitle">
+			<span id="title">GraniteDS Community Platform</span>
+			<p><a href="index.html">Home</a> - Configure SSL</p>
+		</div>
+		<a href="http://www.jboss.org/">
+			<img src="images/hdr_jbosslogo.gif" alt="JBoss" id="logojb" width="72" height="46" />
+		</a>
+	</div>
+	<div id="navigation_bar"></div>
+
+	<div id="content">
+		<div class="Panel">
+			<h3>Introduction</h3>
+			<p class="PanelPar">GraniteDS Community Plateform comes with all libraries required by encrypted
+			remoting, even real-time (Apache Portable Runtime with SSL).</p>
+			<p class="PanelPar">Configuring the platform to use
+			HTTPS instead of HTTP is just a matter of uncommmenting/commenting out some protions of the
+			configuration and using Flex applications compiled with SSL support.</p>
+		</div>
+		<div class="Panel">
+			<h3>Configure the APR+SSL Connector</h3>
+			<p class="PanelPar">
+			Stop JBoss, edit your <code>&lt;JBOSS_HOME>/server/default/deploy/jbossweb.sar/server.xml</code> file and find
+			this section (beginning of the file): 
+<pre class="brush: xml; toolbar: false;">
+&lt;!--
+A HTTP/1.1 Connector on port 8080.
+Comment this connector out if you want an HTTPS configuration (see below).
+-->
+&lt;Connector protocol="HTTP/1.1" port="8080" address="${jboss.bind.address}" 
+    connectionTimeout="20000" redirectPort="8443" />
+
+&lt;!--
+A HTTPS/1.1 configuration for APR+SSL on port 8443.
+GraniteDS samples must be recompiled with SSL support.
+
+&lt;Connector port="8443" SSLEnabled="true"
+    protocol="org.apache.coyote.http11.Http11AprProtocol" 
+    maxThreads="150" scheme="https" secure="true"
+    SSLCertificateFile="${jboss.server.home.dir}/conf/graniteds.crt" 
+    SSLCertificateKeyFile="${jboss.server.home.dir}/conf/graniteds.key"
+    SSLPassword="graniteds"
+    clientAuth="false" sslProtocol="TLSv1" />
+-->
+</pre>
+			</p>
+			<p class="PanelPar">
+			Move the comments so you get this:
+<pre class="brush: xml; toolbar: false;">
+&lt;!--
+A HTTP/1.1 Connector on port 8080.
+Comment this connector out if you want an HTTPS configuration (see below).
+
+&lt;Connector protocol="HTTP/1.1" port="8080" address="${jboss.bind.address}" 
+    connectionTimeout="20000" redirectPort="8443" />
+-->
+
+&lt;!--
+A HTTPS/1.1 configuration for APR+SSL on port 8443.
+GraniteDS samples must be recompiled with SSL support.
+-->
+&lt;Connector port="8443" SSLEnabled="true"
+    protocol="org.apache.coyote.http11.Http11AprProtocol" 
+    maxThreads="150" scheme="https" secure="true"
+    SSLCertificateFile="${jboss.server.home.dir}/conf/graniteds.crt" 
+    SSLCertificateKeyFile="${jboss.server.home.dir}/conf/graniteds.key"
+    SSLPassword="graniteds"
+    clientAuth="false" sslProtocol="TLSv1" />
+</pre>
+			</p>
+			<p class="PanelPar">
+			As you can see, the platform comes with self-signed certificate files generated with
+			OpenSSL (you should of course change them in production environments).
+			</p>
+		</div>
+		<div class="Panel">
+			<h3>Test your APR+SSL Cconfiguration</h3>
+			<p class="PanelPar">
+			Edit your <code>&lt;JBOSS_HOME>/server/default/conf/bootstrap/profile.xml</code> file and find
+			this section:
+<pre class="brush: xml; toolbar: false;">
+&lt;property name="applicationURIs">
+    &lt;list elementClass="java.net.URI">
+        &lt;value>${jboss.server.home.url}deploy&lt;/value>
+        &lt;value>${jboss.server.home.url}samples&lt;/value>
+        &lt;!--value>${jboss.server.home.url}samples-ssl&lt;/value-->
+    &lt;/list>
+&lt;/property>
+</pre>
+			</p>
+			<p class="PanelPar">
+			Move the comments so you get this:
+<pre class="brush: xml; toolbar: false;">
+&lt;property name="applicationURIs">
+    &lt;list elementClass="java.net.URI">
+        &lt;value>${jboss.server.home.url}deploy&lt;/value>
+        &lt;!--value>${jboss.server.home.url}samples&lt;/value-->
+        &lt;value>${jboss.server.home.url}samples-ssl&lt;/value>
+    &lt;/list>
+&lt;/property>
+</pre>
+			</p>
+			<p class="PanelPar">
+			Restart JBoss and point your browser to <a href="https://localhost:8443/">https://localhost:8443/</a>.
+			</p>
+			<p class="PanelPar">
+			You should get a warning saying that the certificate is untrusted: just accept it and you should see
+			the GraniteDS Community Platform home page in SSL mode. You may then test the sample applications
+			as usual.
+			</p>
+		</div>
+	</div>
+</body>
+
+</html>

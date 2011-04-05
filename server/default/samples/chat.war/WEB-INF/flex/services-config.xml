@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services-config>
+
+    <services>
+        <service id="messaging-service"
+            class="flex.messaging.services.MessagingService"
+            messageTypes="flex.messaging.messages.AsyncMessage">
+            <adapters>
+                <adapter-definition id="default" class="org.granite.gravity.adapters.SimpleServiceAdapter" default="true"/>
+            </adapters>
+
+            <destination id="gravity">
+                <channels>
+                    <channel ref="gravityamf"/>
+                </channels>
+            </destination>
+        </service>
+    </services>
+
+    <channels>
+        <channel-definition id="gravityamf" class="org.granite.gravity.channels.GravityChannel">
+            <endpoint
+                uri="http://{server.name}:{server.port}/{context.root}/gravity/amf"
+                class="flex.messaging.endpoints.AMFEndpoint"/>
+        </channel-definition>
+    	<!--
+    	Alternate configuration for HTTPS (requires an APR+SSL setup).
+        <channel-definition id="gravityamf" class="org.granite.gravity.channels.SecureGravityChannel">
+            <endpoint
+                uri="https://{server.name}:{server.port}/{context.root}/gravity/amf"
+                class="flex.messaging.endpoints.SecureAMFEndpoint"/>
+        </channel-definition>
+         -->
+    </channels>
+
+</services-config>

@@ -1,0 +1,28 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+s|Application {
+	background-color: #6D6F71;
+}
+s|Panel {
+	chrome-color: #9A2D30;
+	background-color: #f8f8f8;
+}
+s|Panel #titleDisplay {
+	color: white;
+	font-size: 14;
+	font-family: "Arial";
+	padding-right: 8px;
+	font-style: normal;
+}
+s|Button {
+	chrome-color: #5E899C;
+	color: white;
+}
+s|Button s|Label {
+	font-style: normal;
+}
+s|Label {
+	font-style: italic;
+}
