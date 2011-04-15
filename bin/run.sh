@@ -187,6 +187,9 @@ case "$JBOSS_NATIVE_CPU" in
   Power*)
     JBOSS_NATIVE_CPU="ppc"
   ;;
+  Darwin*)
+    JBOSS_NATIVE_CPU="macosx"
+  ;;
 esac
 
 JBOSS_NATIVE_SYS=`uname -s`
@@ -222,6 +225,14 @@ if [ -d "$JBOSS_NATIVE_DIR" ]; then
           LD_LIBRARY_PATH="$JBOSS_NATIVE_DIR:$LD_LIBRARY_PATH"
         fi
         export LD_LIBRARY_PATH
+    fi
+    if $darwin; then
+        if [ "x$DYLD_LIBRARY_PATH" = "x" ]; then
+          DYLD_LIBRARY_PATH="$JBOSS_NATIVE_DIR"
+        else
+          DYLD_LIBRARY_PATH="$JBOSS_NATIVE_DIR:$DYLD_LIBRARY_PATH"
+        fi
+        export DYLD_LIBRARY_PATH
     fi
     if [ "x$JAVA_OPTS" = "x" ]; then
         JAVA_OPTS="-Djava.library.path=$JBOSS_NATIVE_DIR"
