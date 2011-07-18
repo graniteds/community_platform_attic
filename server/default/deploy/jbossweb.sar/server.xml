@@ -12,18 +12,6 @@
       <Connector protocol="HTTP/1.1" port="8080" address="${jboss.bind.address}" 
         connectionTimeout="20000" redirectPort="8443" />
 
-      <!--
-      A HTTPS/1.1 configuration for APR+SSL on port 8443.
-      GraniteDS samples must be recompiled with SSL support.
-      <Connector port="8443" SSLEnabled="true"
-        protocol="org.apache.coyote.http11.Http11AprProtocol" 
-        maxThreads="150" scheme="https" secure="true"
-        SSLCertificateFile="${jboss.server.home.dir}/conf/graniteds.crt" 
-        SSLCertificateKeyFile="${jboss.server.home.dir}/conf/graniteds.key"
-        SSLPassword="graniteds"
-        clientAuth="false" sslProtocol="TLSv1" />
-      -->
-
       <!-- Add this option to the connector to avoid problems with 
           .NET clients that don't implement HTTP/1.1 correctly 
          restrictedUserAgents="^.*MS Web Services Client Protocol 1.1.4322.*$"
@@ -34,6 +22,14 @@
       Does NOT work with APR (commented out).
       <Connector protocol="AJP/1.3" port="8009" address="${jboss.bind.address}"
          redirectPort="8443" />
+      -->
+
+      <!-- SSL/TLS Connector configuration using the admin devl guide keystore
+      <Connector protocol="HTTP/1.1" SSLEnabled="true" 
+           port="8443" address="${jboss.bind.address}"
+           scheme="https" secure="true" clientAuth="false" 
+           keystoreFile="${jboss.server.home.dir}/conf/chap8.keystore"
+           keystorePass="rmi+ssl" sslProtocol = "TLS" />
       -->
 
       <Engine name="jboss.web" defaultHost="localhost">

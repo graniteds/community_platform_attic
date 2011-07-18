@@ -26,7 +26,6 @@
 			<list elementClass="java.net.URI">
 				<value>${jboss.server.home.url}deploy</value>
 				<value>${jboss.server.home.url}samples</value>
-				<!--value>${jboss.server.home.url}samples-ssl</value-->
 			</list>
 		</property>
 		<property name="attachmentStoreRoot">${jboss.server.data.dir}/attachments</property>

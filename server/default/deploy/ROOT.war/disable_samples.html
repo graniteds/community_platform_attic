@@ -32,8 +32,8 @@
 			<h3>Disabling Sample Applications</h3>
 			<ul>
 				<li>
-					<span class="ItemTitle">Disabling the samples deploy directory configuration</span>
-					<p>The simplest way of disabling the GraniteDS sample applications is to remove
+					<span class="ItemTitle">Disabling the deploy directory configuration of the sample applications</span>
+					<p>The simplest way to disable the GraniteDS sample applications is to remove
 					the reference of their custom deploy directory.</p>
 					<p>Edit the <code>&lt;JBOSS_HOME&gt;/server/default/conf/bootstrap/profile.xml</code>
 					file and comment out the <code>${jboss.server.home.url}samples</code> and
@@ -44,17 +44,16 @@
     &lt;list elementClass="java.net.URI">
         &lt;value>${jboss.server.home.url}deploy&lt;/value>
         &lt;!--value>${jboss.server.home.url}samples&lt;/value-->
-        &lt;!--value>${jboss.server.home.url}samples-ssl&lt;/value-->
     &lt;/list>
 &lt;/property>
 </pre>
 					</p>
-					<p>The GraniteDS sample applications won't be loaded anymore when you will restart JBoss.</p>
+					<p>The GraniteDS sample applications won't be loaded anymore when you restart JBoss.</p>
 				</li>
 				<li>
-					<span class="ItemTitle">Deleting the samples deploy directory</span>
+					<span class="ItemTitle">Deleting the deploy directory of the sample applications</span>
 					<p>You may additionally delete the entire <code>&lt;JBOSS_HOME&gt;/server/default/samples</code>
-					and <code>&lt;JBOSS_HOME&gt;/server/default/samples-ssl</code> directories.</p>
+					directory.</p>
 				</li>
 			</ul>
 		</div>
