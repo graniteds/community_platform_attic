@@ -15,7 +15,7 @@ BASE_DIR=`pwd`
 BUILD_DIR="build"
 COMMON_DIR="common"
 SAMPLES_DIR="samples"
-/bin/rm -rf "$BUILD_DIR" "$COMMON_DIR" "$SAMPLES_DIR"
+/bin/rm -rf "$BUILD_DIR" "$COMMON_DIR/graniteds"
 /bin/mkdir "$BUILD_DIR"
 
 UNZIP_JBOSS_EXCLUDE="\
