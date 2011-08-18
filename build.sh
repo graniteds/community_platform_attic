@@ -4,7 +4,7 @@
 
 JBOSS_DIST=$1
 JBOSS_ROOT_DIR=$2
-JBOSS_ARCHIVE=$3
+JBOSS_ARCHIVE="$JBOSS_DIST/$3"
 
 GDS_VERSION=$4
 GDS_ROOT_DIR="graniteds-cp-$GDS_VERSION"
@@ -47,7 +47,7 @@ echo "Copying common platform files..."
 
 echo "Copying samples..."
 PLATFORM_HOME="$BASE_DIR/$BUILD_DIR/$GDS_ROOT_DIR"
-/bin/cp -rf samples/* "$PLATFORM_HOME/server/default/samples"
+/bin/cp -rf samples "$PLATFORM_HOME/server/default"
 
 COMMON_TAR="$GDS_ROOT_DIR.tar"
 COMMON_ZIP="$GDS_ROOT_DIR.zip"
@@ -72,7 +72,7 @@ function distrib_tar() {
   echo "Copying $BUILD_DIR/$COMMON_TAR to $DISTRIB_TAR..."
   /bin/cp "$BUILD_DIR/$COMMON_TAR" "$DISTRIB_TAR" 
 
-  NATIVE_TAR_GZ="jboss-native-$JBOSS_NATIVE_VERSION-$1.tar.gz"
+  NATIVE_TAR_GZ="$JBOSS_DIST/jboss-native-$JBOSS_NATIVE_VERSION-$1.tar.gz"
   echo "Unarchiving $NATIVE_TAR_GZ into $TMP/$GDS_ROOT_DIR..."
   /bin/mkdir "$TMP/$GDS_ROOT_DIR"
   tar --directory "$TMP/$GDS_ROOT_DIR" -zxf "$NATIVE_TAR_GZ"
@@ -97,7 +97,7 @@ function distrib_zip() {
   echo "Copying $BUILD_DIR/$COMMON_ZIP to $DISTRIB_ZIP..."
   /bin/cp "$BUILD_DIR/$COMMON_ZIP" "$DISTRIB_ZIP"
 
-  NATIVE_ZIP="jboss-native-$JBOSS_NATIVE_VERSION-$1.zip"
+  NATIVE_ZIP="$JBOSS_DIST/jboss-native-$JBOSS_NATIVE_VERSION-$1.zip"
   echo "Unziping $NATIVE_ZIP into $TMP/$GDS_ROOT_DIR"
   /bin/mkdir "$TMP/$GDS_ROOT_DIR"
   unzip -q "$NATIVE_ZIP" -d "$TMP/$GDS_ROOT_DIR"
