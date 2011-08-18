@@ -30,10 +30,14 @@ echo "Unziping $JBOSS_ARCHIVE to $BUILD_DIR..."
 unzip -q "$JBOSS_ARCHIVE" -d "$BUILD_DIR" -x $UNZIP_JBOSS_EXCLUDE
 /bin/mv "$BUILD_DIR/$JBOSS_ROOT_DIR" "$BUILD_DIR/$GDS_ROOT_DIR"
 
+echo "Unzipping GraniteDS distribution to $BUILD_DIR..."
+unzip -q "dist/graniteds-$GDS_VERSION.zip" -d "${COMMON_DIR}"
+
 SAMPLES_PROJECTS_DIR="$COMMON_DIR/graniteds/$SAMPLES_DIR"
 SAMPLES_PROJECTS_ZIP="$BASE_DIR/$SAMPLES_PROJECTS_DIR/sample-projects.zip"
 echo "Creating sample projects $SAMPLES_PROJECTS_ZIP..."
 /bin/mkdir -p "$SAMPLES_PROJECTS_DIR"
+/bin/cp -rf "$SAMPLES_DIR" "$SAMPLES_PROJECTS_DIR"
 cd "$SAMPLES_DIR"
 zip -qr "$SAMPLES_PROJECTS_ZIP" *
 cd "$BASE_DIR"

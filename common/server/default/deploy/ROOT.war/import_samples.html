@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>GraniteDS Community Platform - Import Sample Applications Into Eclipse</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="StyleSheet" href="css/graniteds.css" type="text/css"/>
+</head>
+
+<body>
+	<div id="banner">
+		<a href="http://www.graniteds.org/">
+			<img src="images/graniteds.png" alt="GraniteDS" id="logo" width="46" height="46" />
+		</a>
+		<div id="bannerTitle">
+			<span id="title">GraniteDS Community Platform</span>
+			<p><a href="index.html">Home</a> - Import Sample Applications Into Eclipse</p>
+		</div>
+		<a href="http://www.jboss.org/">
+			<img src="images/hdr_jbosslogo.gif" alt="JBoss" id="logojb" width="72" height="46" />
+		</a>
+	</div>
+	<div id="navigation_bar"></div>
+
+	<div id="content">
+		<div class="Panel">
+			<h3>Requirements</h3>
+			<ul>
+				<li>
+					<a href="http://www.eclipse.org/downloads/">Eclipse 3.4 or above</a>
+					<p>Download Eclipse IDE for Java EE developers.</p>
+				</li>
+				<li>
+					<a href="http://www.adobe.com/products/flashbuilder/">Adobe Flash Builder 4</a>
+					<p>Download a trial version or buy Flash Builder 4 (choose the Plug-in bundle).</p>
+				</li>
+			</ul>
+		</div>
+		<div class="Panel">
+			<h3>Install GraniteDS Tools</h3>
+			<ul>
+				<li>
+					<span class="ItemTitle">GraniteDS Eclipse Builder (Gas3)</span>
+					<p>Copy <code>&lt;JBOSS_HOME&gt;/graniteds/tools/org.granite.builder.***.jar</code> to
+					your <code>&lt;ECLIPSE_HOME&gt;/plugins</code> directory.</p>
+					<p>Restart Eclipse.</p>
+					<p>If you right-click on a Java project in the package explorer view, you now see
+					a <img src="images/add_graniteds_nature.png"/> entry in the drop-down menu.</p>
+				</li>
+			</ul>
+		</div>
+		<div class="Panel">
+			<h3>Import Sample Applications</h3>
+			<ul>
+				<li>
+					<span class="ItemTitle">Importing from Eclipse</span>
+					<p>Right-click in your package explorer view, select "Import...", then "General" - "Existing
+					Projects into Workspace".</p>
+					<p><img src="images/import_1.png"/></p>
+					<p>Click on the "Next" button and select the "Select archive file" radio button, browse to
+					the <code>&lt;JBOSS_HOME&gt;/graniteds/samples/sample-projects.zip</code> file and select the sample
+					projects you want to import.</p>
+					<p><img src="images/import_2.png"/></p>
+					<p>Click on the "Finish" button. The selected sample projects should now be visible in your
+					Eclipse workspace.</p>
+				</li>
+			</ul>
+		</div>
+		<div class="Panel">
+			<h3>Redeploy Applications</h3>
+			<ul>
+				<li>
+					<span class="ItemTitle">Configuring deployment</span>
+					<p>Edit the <code>build.properties</code> file in the root directory of the project. Change
+					the <code>jboss.home</code> property value so it points to your GraniteDS Community Platform
+					installation directory (ie: <code>JBOSS_HOME</code>).</p>
+				</li>
+				<li>
+					<span class="ItemTitle">Redeploying with the Ant build file</span>
+					<p>Once you have modified a sample application, you may redeploy it by simply right-clicking
+					on the <code>build.xml</code> file and selecting "Run As" - "Ant Build".</p>
+					<p>You may now refresh your browser tab in order to see your modification.</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+
+</html>
