@@ -123,12 +123,12 @@ function distrib_zip() {
 	/bin/rm -rf "${TMP}"
 }
 
-distrib_tar "linux2-x64-ssl"
-distrib_tar "linux2-x86-ssl"
+distrib_tar "linux2-x64"
+distrib_tar "linux2-x86"
 
-distrib_tar "macosx-x86-ssl"
+distrib_tar "macosx-x86"
 
-distrib_zip "windows-x64-ssl"
-distrib_zip "windows-x86-ssl"
+distrib_zip "windows-x64"
+distrib_zip "windows-x86"
 
 /bin/rm -f "${BUILD_DIR}/${COMMON_TAR}" "${BUILD_DIR}/${COMMON_ZIP}"
