@@ -52,6 +52,12 @@ unzip -q "dist/${GDS_RELEASE}.zip" -d "${COMMON_DIR}"
 
 ####################################################################################################
 # Overwrite / add JBoss files 
+
+# Copy samples from previous job
+echo "Copying samples..."
+/bin/mkdir -p "${PLATFORM_HOME}/server/default/deploy_samples"
+/bin/cp -rf samples/* "${PLATFORM_HOME}/server/default/deploy_samples"
+
 # Update/add platform files
 echo "Copying common platform files..."
 /bin/cp -rf common/* "${BUILD_DIR}/$GDS_ROOT_DIR"
