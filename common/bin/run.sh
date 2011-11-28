@@ -244,6 +244,10 @@ fi
 # Setup JBoss specific properties
 JAVA_OPTS="-Dprogram.name=$PROGNAME $JAVA_OPTS"
 
+if $darwin; then
+    JAVA_OPTS="-d32 $JAVA_OPTS"
+fi
+
 # Setup the java endorsed dirs
 JBOSS_ENDORSED_DIRS="$JBOSS_HOME/lib/endorsed"
 
