@@ -46,7 +46,7 @@ unzip -q "${JBOSS_ARCHIVE}" -d "${BUILD_DIR}" -x ${UNZIP_JBOSS_EXCLUDE}
 
 ####################################################################################################
 # Extract distribution artifacts
-echo "Unzipping GraniteDS distribution to $BUILD_DIR..."
+echo "Unzipping GraniteDS distribution to ${COMMON_DIR}..."
 unzip -q "dist/${GDS_RELEASE}.zip" -d "${COMMON_DIR}"
 
 
@@ -54,13 +54,12 @@ unzip -q "dist/${GDS_RELEASE}.zip" -d "${COMMON_DIR}"
 # Overwrite / add JBoss files 
 
 # Copy samples from previous job
-echo "Copying samples..."
-/bin/mkdir -p "${BUILD_DIR}/${GDS_ROOT_DIR}/server/default/deploy_samples"
-/bin/cp -rf samples/* "${BUILD_DIR}/${GDS_ROOT_DIR}/server/default/deploy_samples"
+echo "Copying ${SAMPLES_DIR}..."
+/bin/cp -rf "${SAMPLES_DIR}" "${BUILD_DIR}/${GDS_ROOT_DIR}/server/default/."
 
 # Update/add platform files
 echo "Copying common platform files..."
-/bin/cp -rf common/* "${BUILD_DIR}/$GDS_ROOT_DIR"
+/bin/cp -rf "${COMMON_DIR}/*" "${BUILD_DIR}/${GDS_ROOT_DIR}"
 ####################################################################################################
 # Zip/tar common platform files (without APR libraries)
 
