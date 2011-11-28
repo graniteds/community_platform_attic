@@ -59,7 +59,7 @@ echo "Copying ${SAMPLES_DIR}..."
 
 # Update/add platform files
 echo "Copying common platform files..."
-/bin/cp -rf "${COMMON_DIR}/*" "${BUILD_DIR}/${GDS_ROOT_DIR}"
+/bin/cp -rf "${COMMON_DIR}"/* "${BUILD_DIR}/${GDS_ROOT_DIR}"
 ####################################################################################################
 # Zip/tar common platform files (without APR libraries)
 
