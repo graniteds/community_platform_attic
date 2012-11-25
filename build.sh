@@ -10,7 +10,8 @@ JBOSS_DIST=$1
 JBOSS_ROOT_DIR=$2
 JBOSS_ARCHIVE="$JBOSS_DIST/$3"
 
-GDS_RELEASE=$4
+GDS_DIST=$4
+GDS_RELEASE=$5
 GDS_ROOT_DIR="${GDS_RELEASE}"
 # JBoss native version
 JBOSS_NATIVE_VERSION="2.0.10"
@@ -47,7 +48,7 @@ unzip -q "${JBOSS_ARCHIVE}" -d "${BUILD_DIR}" -x ${UNZIP_JBOSS_EXCLUDE}
 ####################################################################################################
 # Extract distribution artifacts
 echo "Unzipping GraniteDS distribution to ${COMMON_DIR}..."
-unzip -q "dist/${GDS_RELEASE}.zip" -d "${COMMON_DIR}"
+unzip -q "dist/${GDS_DIST}.zip" -d "${COMMON_DIR}"
 
 
 ####################################################################################################
